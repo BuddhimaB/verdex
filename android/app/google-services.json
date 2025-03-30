@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "782188520007",
+    "project_id": "verdex-a44b5",
+    "storage_bucket": "verdex-a44b5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782188520007:android:2b929b6d70518b26dfc762",
+        "android_client_info": {
+          "package_name": "com.CSE.Verdex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlJbyXSegjWszJg3IPN6K4c591CROIDsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782188520007:android:bedf616b0c8300f3dfc762",
+        "android_client_info": {
+          "package_name": "com.example.verdex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlJbyXSegjWszJg3IPN6K4c591CROIDsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
