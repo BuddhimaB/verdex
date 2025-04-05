@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:verdex/layout/app_shell.dart';
 
 import 'core/theme.dart';
-import 'features/home/home_screen.dart';
+// import 'features/home/home_screen.dart';
 import 'features/auth/screens/login_screen.dart';
 import 'features/search/search_screen.dart'; 
 
@@ -28,7 +29,8 @@ class VerdexApp extends StatelessWidget {
               body: Center(child: CircularProgressIndicator()),
             );
           } else if (snapshot.hasData) {
-            return const HomeScreen();
+            // return const HomeScreen();
+            return const AppShell();
           } else {
             return const LoginScreen();
           }

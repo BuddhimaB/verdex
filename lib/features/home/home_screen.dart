@@ -1,36 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:verdex/features/search/search_screen.dart'; // Update this path based on your actual structure
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
-
-  void _onTabTapped(int index) {
-    if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => const SearchScreen()),
-      );
-    } else {
-      setState(() {
-        _currentIndex = index;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _BottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: _onTabTapped,
-      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(20),
@@ -42,9 +17,17 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            _variantCard("Variant 1", "Include: Lemon Balm seeds, dung, Planta pot, marker...", 'assets/images/plant1.png'),
+            _variantCard(
+              "Variant 1",
+              "Include: Lemon Balm seeds, dung, Planta pot, marker...",
+              'assets/images/plant1.png',
+            ),
             const SizedBox(height: 12),
-            _variantCard("Variant 2", "Include: Lemon Balm seeds, dung, Planta pot, marker...", 'assets/images/plant2.png'),
+            _variantCard(
+              "Variant 2",
+              "Include: Lemon Balm seeds, dung, Planta pot, marker...",
+              'assets/images/plant2.png',
+            ),
           ],
         ),
       ),
@@ -64,8 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title,
-                      style:
-                          const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 4),
                   Text(subtitle,
                       style: const TextStyle(color: Colors.black54, fontSize: 13)),
@@ -116,8 +98,7 @@ class _HeaderSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text("AI disease identifier –",
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 const Text("Rice plant",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 16),
@@ -133,42 +114,14 @@ class _HeaderSection extends StatelessWidget {
                 const SizedBox(height: 8),
                 TextButton(
                   onPressed: () {},
-                  child: const Text("See more >", style: TextStyle(color: Colors.green)),
+                  child:
+                      const Text("See more >", style: TextStyle(color: Colors.green)),
                 )
               ],
             ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class _BottomNavBar extends StatelessWidget {
-  final int currentIndex;
-  final Function(int) onTap;
-
-  const _BottomNavBar({
-    super.key,
-    required this.currentIndex,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: onTap,
-      selectedItemColor: Colors.green,
-      unselectedItemColor: Colors.grey,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.search), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.favorite_border), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-      ],
     );
   }
 }
