@@ -19,18 +19,18 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _checkAuth() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future<void>.delayed(const Duration(seconds: 2));
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     if (authProvider.isLoggedIn) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const HomeScreen()),
+        MaterialPageRoute<void>(builder: (_) => const HomeScreen()),
       );
     } else {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const LoginScreen()),
+        MaterialPageRoute<void>(builder: (_) => const LoginScreen()),
       );
     }
   }

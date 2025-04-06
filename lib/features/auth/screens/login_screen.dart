@@ -30,11 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
         _passwordController.text.trim(),
       );
     } catch (e) {
-
-      print("LOGIN ERROR: $e");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.toString())),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
     } finally {
       setState(() => _isLoading = false);
     }
@@ -42,8 +40,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -51,9 +47,15 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Welcome Back 👋", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+              const Text(
+                "Welcome Back 👋",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 8),
-              const Text("Login to your Verdex account", style: TextStyle(fontSize: 16, color: Colors.grey)),
+              const Text(
+                "Login to your Verdex account",
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
               const SizedBox(height: 32),
               Form(
                 key: _formKey,
@@ -64,15 +66,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: 'Email',
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) =>
-                          value == null || !value.contains('@') ? 'Enter a valid email' : null,
+                          value == null || !value.contains('@')
+                          ? 'Enter a valid email'
+                          : null,
                     ),
                     const SizedBox(height: 16),
                     InputField(
                       controller: _passwordController,
                       hintText: 'Password',
                       isPassword: true,
-                      validator: (value) =>
-                          value == null || value.length < 6 ? 'Minimum 6 characters' : null,
+                      validator: (value) => value == null || value.length < 6
+                          ? 'Minimum 6 characters'
+                          : null,
                     ),
                     const SizedBox(height: 24),
                     PrimaryButton(
@@ -91,16 +96,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => const SignupScreen()),
+                        MaterialPageRoute<SignupScreen>(
+                          builder: (_) => const SignupScreen(),
+                        ),
                       );
                     },
                     child: const Text(
                       "Sign up",
-                      style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  )
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),

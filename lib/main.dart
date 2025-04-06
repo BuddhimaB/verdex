@@ -10,15 +10,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize Firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-      ],
+      providers: [ChangeNotifierProvider(create: (_) => AuthProvider())],
       child: const VerdexApp(),
     ),
   );

@@ -46,11 +46,18 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title,
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   const SizedBox(height: 4),
-                  Text(subtitle,
-                      style: const TextStyle(color: Colors.black54, fontSize: 13)),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(color: Colors.black54, fontSize: 13),
+                  ),
                 ],
               ),
             ),
@@ -63,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                 height: 80,
                 fit: BoxFit.cover,
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -97,10 +104,14 @@ class _HeaderSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("AI disease identifier –",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                const Text("Rice plant",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                const Text(
+                  "AI disease identifier –",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const Text(
+                  "Rice plant",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 16),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
@@ -114,9 +125,11 @@ class _HeaderSection extends StatelessWidget {
                 const SizedBox(height: 8),
                 TextButton(
                   onPressed: () {},
-                  child:
-                      const Text("See more >", style: TextStyle(color: Colors.green)),
-                )
+                  child: const Text(
+                    "See more >",
+                    style: TextStyle(color: Colors.green),
+                  ),
+                ),
               ],
             ),
           ),

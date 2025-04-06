@@ -1,0 +1,82 @@
+# Lefthook configuration for Flutter project
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.dart"
+      run: dart format --set-exit-if-changed {staged_files}
+      stage_fixed: true
+
+    analyze:
+      run: |
+        dart analyze > analyze_output.txt
+        type analyze_output.txt
+        findstr /C:"error •" analyze_output.txt > nul
+        if errorlevel 1 (exit 0) else (exit 1)
+
+    check-merge-conflicts:
+      run: git diff --check
+
+    check-case-conflicts:
+      run: |
+        powershell -Command "
+        $files = git ls-files
+        $map = @{}
+        $conflicts = @()
+
+        foreach ($file in $files) {
+          $lower = $file.ToLower()
+          if ($map.ContainsKey($lower)) {
+            $conflicts += $file
+            $conflicts += $map[$lower]
+          } else {
+            $map[$lower] = $file
+          }
+        }
+
+        if ($conflicts.Count -gt 0) {
+          Write-Host '🚨 Case conflicts found:'
+          $conflicts | Sort-Object -Unique | ForEach-Object { Write-Host ' -' $_ }
+          exit 1
+        } else {
+          exit 0
+        }
+        " > $null
+
+pre-push:
+  parallel: false
+  commands:
+    build-check:
+      run: flutter build apk --debug --no-pub
+
+    final-analyze:
+      run: |
+        dart analyze > analyze_output.txt
+        type analyze_output.txt
+        findstr /C:"error •" analyze_output.txt > nul
+        if errorlevel 1 (exit 0) else (exit 1)
+
+commit-msg:
+  commands:
+    check-commit-message:
+      run: |
+        powershell -Command "
+        $commitMsg = Get-Content -Path '$1' -TotalCount 1
+        Write-Host '📝 Validating commit message:' $commitMsg
+
+        # Simple validation for basic format: type: description
+        if ($commitMsg -match '^(feat|fix|docs|style|refactor|test|chore|ci|perf|build|revert): .+') {
+          Write-Host '✅ Commit message format is valid'
+          exit 0
+        } else {
+          Write-Host '🚨 Commit message format is invalid!'
+          Write-Host ''
+          Write-Host '✅ Valid format: type: description'
+          Write-Host '📋 Valid types: feat, fix, docs, style, refactor, test, chore, ci, perf, build, revert'
+          Write-Host '📝 Example: feat: add user login functionality'
+          Write-Host '📝 Example: chore: added lint rules, formatting, pre commit, push hooks'
+          Write-Host ''
+          Write-Host '❌ Your message:' $commitMsg
+          exit 1
+        }
+        "> $null
