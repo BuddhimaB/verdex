@@ -5,8 +5,6 @@ class CommunityScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Community Screen")),
-    );
+    return const Scaffold(body: Center(child: Text("Community Screen")));
   }
 }

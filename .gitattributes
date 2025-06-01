@@ -1,0 +1,27 @@
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Force LF for specific file types
+*.dart text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+
+# Flutter/Dart specific
+pubspec.lock text eol=lf
+analysis_options.yaml text eol=lf

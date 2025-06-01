@@ -87,7 +87,10 @@ class _SearchScreenBodyState extends State<_SearchScreenBody> {
       decoration: InputDecoration(
         hintText: "Search",
         prefixIcon: const Icon(Icons.search),
-        contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 14,
+          horizontal: 20,
+        ),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         filled: true,
         fillColor: Colors.grey.shade100,

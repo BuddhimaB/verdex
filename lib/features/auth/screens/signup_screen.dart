@@ -21,9 +21,9 @@ class _SignupScreenState extends State<SignupScreen> {
   void _signup() async {
     if (!_formKey.currentState!.validate()) return;
     if (_passwordController.text != _confirmController.text) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Passwords do not match")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Passwords do not match")));
       return;
     }
 
@@ -37,9 +37,9 @@ class _SignupScreenState extends State<SignupScreen> {
       );
       Navigator.pop(context); // Go back to login after signup
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.toString())),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
     } finally {
       setState(() => _isLoading = false);
     }
@@ -55,11 +55,15 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Create Account 🌿",
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+                const Text(
+                  "Create Account 🌿",
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
-                const Text("Join Verdex and start exploring!",
-                    style: TextStyle(fontSize: 16, color: Colors.grey)),
+                const Text(
+                  "Join Verdex and start exploring!",
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
                 const SizedBox(height: 32),
                 Form(
                   key: _formKey,
@@ -71,28 +75,26 @@ class _SignupScreenState extends State<SignupScreen> {
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) =>
                             value == null || !value.contains('@')
-                                ? 'Enter a valid email'
-                                : null,
+                            ? 'Enter a valid email'
+                            : null,
                       ),
                       const SizedBox(height: 16),
                       InputField(
                         controller: _passwordController,
                         hintText: 'Password',
                         isPassword: true,
-                        validator: (value) =>
-                            value == null || value.length < 6
-                                ? 'Minimum 6 characters'
-                                : null,
+                        validator: (value) => value == null || value.length < 6
+                            ? 'Minimum 6 characters'
+                            : null,
                       ),
                       const SizedBox(height: 16),
                       InputField(
                         controller: _confirmController,
                         hintText: 'Confirm Password',
                         isPassword: true,
-                        validator: (value) =>
-                            value == null || value.isEmpty
-                                ? 'Confirm your password'
-                                : null,
+                        validator: (value) => value == null || value.isEmpty
+                            ? 'Confirm your password'
+                            : null,
                       ),
                       const SizedBox(height: 24),
                       PrimaryButton(

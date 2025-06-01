@@ -1,28 +1,50 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
-#
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
-
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
-linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at https://dart.dev/lints.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
-  rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "build/**"
+    - "lib/generated/**"
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
+  errors:
+    # Treat missing required parameters as errors
+    missing_required_param: error
+    # Treat missing returns as errors
+    missing_return: error
+    # Treat TODOs as warnings
+    todo: warning
+    # Treat unused imports as errors
+    unused_import: error
+    # Treat unused local variables as warnings
+    unused_local_variable: warning
+    # Dead code
+    dead_code: warning
+    # Invalid annotations
+    invalid_annotation_target: error
+
+linter:
+  rules:
+    avoid_empty_else: true # Prevent empty else blocks
+    avoid_print: true # No print statements in production
+    avoid_returning_null_for_future: true # Futures should not return null
+    avoid_type_to_string: true # Don't rely on type.toString()
+    avoid_types_as_parameter_names: true # Prevent type name conflicts
+    cancel_subscriptions: true # Prevent memory leaks
+    close_sinks: true # Close streams to prevent leaks
+    control_flow_in_finally: true # No return/break in finally blocks
+    empty_statements: true # Remove empty statements
+    hash_and_equals: true # Override both hashCode and ==
+    no_duplicate_case_values: true # Prevent duplicate switch cases
+    no_logic_in_create_state: true # Keep createState() clean
+    throw_in_finally: true # Don't throw in finally blocks
+    unnecessary_statements: true # Remove pointless statements
+    unrelated_type_equality_checks: true # Prevent wrong type comparisons
+    use_build_context_synchronously: true # Prevent async context issues
+    use_key_in_widget_constructors: true # Widget keys for performance
+    valid_regexps: true # Validate regex patterns
